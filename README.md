@@ -1,1 +1,7 @@
 # Es-Formato-Dati
+Questo progetto prevede l'utilizzo dei 4 linguaggi studiati....
+  1. XML
+  2. DTD
+  3. JSON
+  4. Markdown
+....
