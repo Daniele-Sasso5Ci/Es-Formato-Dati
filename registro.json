@@ -1,0 +1,6 @@
+{
+  "datasource": {
+    "type": "xml",
+    "path": "registro.xml"
+  }
+}
