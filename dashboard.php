@@ -65,11 +65,97 @@ if (file_exists($percorsofile)) {
     $votomateria["tps"] = $risultato->item(0)->nodeValue;
 ?>
 
-<h2>Benvenuto <?php echo $nome . " " . $cognome;?></h2>
-Data di nascita: <?php echo $datanascita; ?>
-<br>
-Classe: <?php echo $classe; ?>
+<html>
+    <header>
+        <title>Benvenuto!</title>
+    </header>
+    <style>
+        body{
+            /*background-color: rgb(165, 249, 255);*/
+            background-image: url("background.jpg");
+            font-family: "Cascadia Mono", Italic;
+            font-size: medium;
+            color: #1E293B;
+        }
+        table, th, td{
+            border-width: 1px;
+            border-style: double;
+            text-align: center;
+            background-color: #F8FAFC;
+            backdrop-filter: blur(5px);
+        }
+        .center{
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            top: 5px;
+        }
+    </style>
+    <body>
+        <div class="center">
+            <h2>Benvenuto <?php echo $nome . " " . $cognome;?>!</h2>
+            Data di nascita: <?php echo $datanascita; ?>
+            <br>
+            Classe: <?php echo $classe; ?>
+            <br><br><br>
+            Registro voti
+            <table>
+                <tr>
+                    <th><b>Nome Materia</b></th>
+                    <th><b>Voto Materia</b></th>
+                </tr>
+                <tr>
+                    <td>Italiano</td>
+                    <td>
+                        <span style="color: <?php echo ($votomateria['italiano'] >= 6) ? 'green' : 'red'; ?>;">
+                            <?php echo $votomateria["italiano"]; ?>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Matematica</td>
+                    <td>
+                        <span style="color: <?php echo ($votomateria['matematica'] >= 6) ? 'green' : 'red'; ?>;">
+                            <?php echo $votomateria["matematica"]; ?>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>storia</td>
+                    <td>
+                        <span style="color: <?php echo ($votomateria['storia'] >= 6) ? 'green' : 'red'; ?>;">
+                            <?php echo $votomateria["storia"]; ?>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Informatica</td>
+                    <td>
+                        <span style="color: <?php echo ($votomateria['informatica'] >= 6) ? 'green' : 'red'; ?>;">
+                            <?php echo $votomateria["informatica"]; ?>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sistemi e Reti</td>
+                    <td>
+                        <span style="color: <?php echo ($votomateria['sistemiereti'] >= 6) ? 'green' : 'red'; ?>;">
+                            <?php echo $votomateria["sistemiereti"]; ?>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tecnologie per la Progettazione del Software</td>
+                    <td>
+                        <span style="color: <?php echo ($votomateria['tps'] >= 6) ? 'green' : 'red'; ?>;">
+                            <?php echo $votomateria["tps"]; ?>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <br><br>
+            <a href="logout.php">Logout</a>
+        </div>
+    </body>
+</html>
 
-<p>Sei nella pagina riservata.</p>
-
-<a href="logout.php">Logout</a>

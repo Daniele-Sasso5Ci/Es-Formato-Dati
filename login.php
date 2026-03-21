@@ -1,7 +1,7 @@
 <?php
     require "config.php";
 
-    $error = ""; //Variabile per messaggi di errore. Serve per mostrare eventuali errori nel form. La useremo in seguito
+    $div_errore="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -22,9 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             		header("Location: dashboard.php");//Indica al browser di caricare la pagina dashboard.php, a seconda della configurazione. 
                                                           //Reindirizza (redirect) il browser dell'utente verso un'altra pagina web 
             		exit();  			       } 
-             else { $error = "Password errata!"; }
+             else {
+                $div_errore = "<div class='errore'><span>Password errata!</span></div>"; 
+            }
                              } 
-    else { $error = "Utente non trovato!"; }
+    else {
+        $div_errore = "<div class='errore'><span>Utente errato!</span></div>";
+    }
 
     $stmt->close();
                                            }
@@ -36,18 +40,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&display=swap');
             body{
-                background-color: rgb(165, 249, 255);
+                background-image: url("background.jpg");
                 font-family: "Cascadia Mono", Italic;
                 font-size: medium;
+                color: #1E293B;
             }
             .center {
-                background-color: rgb(119, 255, 214);
                 display: flex;
                 justify-content:center;
                 align-items: baseline;
                 height: 200px;
                 width: 500px;
-                border: 3px solid green;
+                background-color: #F8FAFC;
+                backdrop-filter: blur(5px);
+                border-width: 1px;
+                border-style: double;
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -67,9 +74,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 bottom: 5px;
                 left: 40%
             }
+            .errore{
+                position: absolute;
+                background-color: red;
+                height: 50px;
+                left: 0px;
+                right: 0px;
+                top: 0px;
+                text-align: center;
+                color: white;
+            }
+            span{
+                position: relative;
+                top: 12.5px;
+            }
         </style>
     </head>
     <body>
+        <?php echo $div_errore; ?>
         <div class="center">
             <form method="POST" autocomplete="off">
                 <h4>Inserisci le credenziali per accedere!</h4>

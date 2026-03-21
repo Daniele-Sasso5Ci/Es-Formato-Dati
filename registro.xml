@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE registro SYSTEM "registro.dtd">
+<registro>
+    <alunno>
+        <id>00001</id>
+        <nome>Daniele</nome>
+        <cognome>Sasso</cognome>
+        <datanascita>18/08/2007</datanascita>
+        <classe>5Ci</classe>
+        <votomateria>
+            <italiano>6</italiano>
+            <matematica>6</matematica>
+            <storia>7</storia>
+            <informatica>5</informatica>
+            <sistemiereti>6</sistemiereti>
+            <tps>7</tps>
+        </votomateria>
+    </alunno>
+    <alunno>
+        <id>00002</id>
+        <nome>Giuseppe</nome>
+        <cognome>Catanzaro</cognome>
+        <datanascita>11/03/2007</datanascita>
+        <classe>5Am</classe>
+        <votomateria>
+            <italiano>8</italiano>
+            <matematica>5</matematica>
+            <storia>7</storia>
+            <informatica>6</informatica>
+            <sistemiereti>8</sistemiereti>
+            <tps>7</tps>
+        </votomateria>
+    </alunno>
+    <alunno>
+        <id>00003</id>
+        <nome>Margherita</nome>
+        <cognome>Rossi</cognome>
+        <datanascita>05/02/2007</datanascita>
+        <classe>5Be</classe>
+        <votomateria>
+            <italiano>7</italiano>
+            <matematica>6</matematica>
+            <storia>4</storia>
+            <informatica>5</informatica>
+            <sistemiereti>8</sistemiereti>
+            <tps>8</tps>
+        </votomateria>
+    </alunno>
+</registro>

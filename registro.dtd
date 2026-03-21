@@ -1,0 +1,14 @@
+<!ELEMENT registro (alunno+)>
+<!ELEMENT alunno (id, nome, cognome, datanascita, classe, votomateria)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT cognome (#PCDATA)>
+<!ELEMENT datanascita (#PCDATA)>
+<!ELEMENT classe (#PCDATA)>
+<!ELEMENT votomateria (italiano?, matematica?, storia?, informatica?, sistemiereti?, tps?)>
+<!ELEMENT italiano (#PCDATA)>
+<!ELEMENT matematica (#PCDATA)>
+<!ELEMENT storia (#PCDATA)>
+<!ELEMENT informatica (#PCDATA)>
+<!ELEMENT sistemiereti (#PCDATA)>
+<!ELEMENT tps (#PCDATA)>
