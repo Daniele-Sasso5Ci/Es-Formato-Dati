@@ -7,10 +7,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $id = $_POST["id"];
 
-    $dom = new DOMDocument();
-    $dom->load('registro.xml');
+    $prova = file_get_contents('registro.json');
+    $data = json_decode($prova, true);
+    $percorsofile = $data["datasource"]["path"];
 
-    $xpath = new DOMXPath($dom);
+    if (file_exists($percorsofile)) {
+            $xml = new DOMDocument();
+            $xml->load($percorsofile);
+        } else {
+            die("Errore: File XML non trovato.");
+        }
+
+        if($xml->validate()){
+        } else {
+            echo "Il documento non è valido";
+        }
+
+    $xpath = new DOMXPath($xml);
 
     $query = "/registro/alunno[".$id."]";
     $risultato = $xpath->query($query);
