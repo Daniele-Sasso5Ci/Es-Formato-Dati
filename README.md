@@ -43,5 +43,25 @@ La connessione effettiva viene effettuata tramite l’oggetto mysqli. Se la conn
 
 In sintesi, config.php centralizza la gestione del database e della sessione, rendendo il codice più ordinato, modulare e sicuro. Tutti gli altri file PHP del progetto, come login.php o register.php, includono questo file per poter interagire con il database in modo semplice e coerente.
 
+Il file register.php gestisce il processo di registrazione degli utenti all’interno del sistema. A differenza del login, questa pagina non si limita a verificare dati esistenti, ma si occupa di validare le informazioni inserite e salvarle correttamente nel database, garantendo allo stesso tempo coerenza e sicurezza.
+
+All’inizio del file viene incluso config.php, che permette di stabilire la connessione al database e di gestire le sessioni. Questo è necessario perché la registrazione comporta l’inserimento di nuovi dati nella tabella degli utenti.
+
+Quando l’utente invia il form tramite metodo POST, il programma recupera il valore dell’ID inserito. Questo ID non viene accettato direttamente, ma viene prima verificato attraverso un controllo esterno basato su file JSON e XML. In particolare, il file registro.json viene letto tramite la funzione file_get_contents e convertito in una struttura dati utilizzabile in PHP con json_decode. Da questo file viene estratto il percorso di un file XML contenente i dati degli studenti.
+
+Il file XML viene quindi caricato utilizzando la classe DOMDocument. Prima di essere utilizzato, viene verificato che esista effettivamente nel percorso indicato; in caso contrario, l’esecuzione viene interrotta per evitare errori. Successivamente, il documento XML viene validato per assicurarsi che rispetti la struttura prevista (definita dal DTD). Questo passaggio è importante perché garantisce che i dati siano corretti e leggibili.
+
+Per interrogare il contenuto del file XML viene utilizzato DOMXPath, che permette di eseguire query strutturate. In questo caso viene costruita una query che seleziona un elemento alunno in base all’ID inserito. Se il nodo viene trovato e l’ID ha una lunghezza valida (pari a 5 caratteri), significa che l’utente è effettivamente presente nel registro e può quindi essere registrato nel sistema.
+
+A questo punto vengono recuperati anche username e password inseriti dall’utente. La password non viene salvata in chiaro, ma viene trasformata in una versione crittografata tramite la funzione password_hash, che aumenta significativamente la sicurezza del sistema.
+
+Il programma prepara quindi una query SQL per inserire i dati nella tabella utenti. Anche in questo caso viene utilizzato prepare con bind_param, così da prevenire attacchi SQL injection. Se l’inserimento va a buon fine, viene mostrato un messaggio di conferma.
+
+Nel caso in cui si verifichi un errore, il codice controlla se si tratta di un duplicato (ad esempio ID o username già presenti). Questo viene fatto analizzando il codice di errore restituito dal database. In base al tipo di errore, viene mostrato un messaggio specifico, rendendo il sistema più chiaro e user-friendly. Se invece l’ID non è valido o non è presente nel file XML, viene mostrato un messaggio di errore che impedisce la registrazione.
+
+Dal punto di vista grafico, la pagina mantiene uno stile coerente con le altre, utilizzando un contenitore centrale e mostrando eventuali messaggi di errore o successo nella parte superiore della schermata. Il form richiede tutti i dati necessari e impedisce l’invio di campi vuoti grazie all’attributo required.
+
+In conclusione, register.php rappresenta una delle parti più complesse del progetto, in quanto integra diverse tecnologie: lettura di file JSON, elaborazione di dati XML, validazione tramite DTD e interazione con il database. Questo approccio garantisce che solo utenti validi possano registrarsi e che i dati inseriti siano corretti, migliorando sia la sicurezza sia l’affidabilità del sistema.
+
 
 
