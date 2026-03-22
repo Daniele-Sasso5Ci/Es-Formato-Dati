@@ -81,3 +81,15 @@ Infine, è presente un link per effettuare il logout (logout.php), che consente 
 
 In conclusione, dashboard.php rappresenta la parte finale del flusso del progetto: dopo la registrazione e il login, l’utente può accedere ai propri dati personali e ai voti. Questo file integra diverse tecnologie, tra cui gestione delle sessioni, lettura di file JSON, parsing di XML e visualizzazione dinamica dei dati, dimostrando una buona integrazione tra le varie componenti del sistema.
 
+Il file logout.php ha il compito di gestire la disconnessione dell’utente dal sistema. Anche se il codice è molto breve, svolge una funzione importante per la sicurezza e la corretta gestione delle sessioni.
+
+All’inizio viene richiamata la funzione session_start(), necessaria per accedere alla sessione attiva dell’utente. Senza questo passaggio non sarebbe possibile modificare o distruggere i dati di sessione.
+
+Successivamente viene utilizzata la funzione session_unset(), che rimuove tutte le variabili salvate nella sessione, come ad esempio l’ID dell’utente e lo username. Questo serve a eliminare le informazioni che identificano l’utente all’interno del sistema.
+
+Dopo aver svuotato la sessione, viene chiamata session_destroy(), che elimina completamente la sessione dal server. Questo garantisce che l’utente non sia più considerato autenticato e che non possa accedere alle pagine protette senza effettuare nuovamente il login.
+
+Infine, tramite la funzione header("Location: index.html"), l’utente viene reindirizzato alla pagina iniziale del sito. Questo passaggio migliora l’esperienza utente e completa il processo di logout in modo chiaro e immediato.
+
+In conclusione, logout.php rappresenta l’ultima fase del flusso di autenticazione: dopo il login e l’accesso alla dashboard, permette di terminare la sessione in modo sicuro, impedendo accessi non autorizzati successivi.
+
