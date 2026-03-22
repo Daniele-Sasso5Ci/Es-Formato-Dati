@@ -106,3 +106,17 @@ Tutti gli elementi, come id, nome, cognome e i voti, sono definiti come #PCDATA,
 L’utilizzo del DTD è importante perché consente di validare il file XML tramite il metodo validate() utilizzato nel codice PHP. In questo modo si garantisce che i dati rispettino la struttura prevista prima di essere letti e utilizzati dal programma, evitando errori e incoerenze.
 
 In conclusione, il file registro.dtd svolge un ruolo fondamentale nella gestione dei dati, in quanto definisce le regole che il file XML deve rispettare, contribuendo alla correttezza e all’affidabilità dell’intero sistema.
+
+Il file prova.php è stato utilizzato come ambiente di test per verificare il corretto funzionamento della lettura e dell’elaborazione dei dati provenienti dai file JSON e XML. Questo file non fa parte del flusso principale dell’applicazione, ma è stato impiegato durante lo sviluppo per controllare che i dati venissero caricati e interpretati correttamente.
+
+All’inizio del codice viene letto il contenuto del file registro.json tramite la funzione file_get_contents. Il contenuto viene poi visualizzato con var_dump, che permette di controllare direttamente i dati letti. Successivamente, il JSON viene convertito in una struttura dati PHP tramite json_decode, da cui viene estratto il percorso del file XML contenente i dati degli studenti.
+
+Una volta ottenuto il percorso, il codice verifica l’esistenza del file XML. Se il file è presente, viene caricato tramite la classe DOMDocument; in caso contrario, l’esecuzione viene interrotta con un messaggio di errore. Anche in questo caso viene utilizzato var_dump per verificare che il file sia stato caricato correttamente.
+
+Il documento XML viene poi validato per controllare che rispetti la struttura definita nel DTD. Questo passaggio consente di assicurarsi che i dati siano corretti prima di utilizzarli.
+
+Successivamente viene utilizzato DOMXPath per interrogare il contenuto del file XML. Il codice esegue un ciclo do-while per cercare un determinato ID (idConf) all’interno degli elementi alunno. Il ciclo incrementa progressivamente l’indice finché non trova una corrispondenza tra l’ID cercato e quello presente nel file XML.
+
+Una volta trovato l’elemento corretto, vengono estratti alcuni dati specifici, come la classe e il nome dello studente, che vengono poi visualizzati a schermo.
+
+In conclusione, prova.php è stato utilizzato come strumento di verifica durante lo sviluppo del progetto, permettendo di testare la lettura dei file, la validazione dei dati e le query XPath. Questo approccio ha facilitato l’individuazione di eventuali errori prima dell’integrazione delle stesse funzionalità nei file principali del sistema.
