@@ -17,5 +17,23 @@ Inoltre, è stato utilizzato un font personalizzato importato da Google Fonts, c
 
 Nel complesso, questo file ha il compito di introdurre l’utente al sistema e di indirizzarlo verso le principali funzionalità disponibili.
 
+Il file login.php ha il compito di gestire l’autenticazione degli utenti, ovvero di controllare che solo chi è registrato possa accedere alle pagine protette del progetto. Si tratta quindi di un punto cruciale, perché garantisce la sicurezza e l’integrità dei dati.
+
+All’inizio del file viene incluso config.php, che contiene la configurazione per la connessione al database. Questo passaggio è fondamentale: senza la connessione al database non sarebbe possibile verificare le credenziali inserite dall’utente.
+
+Il codice controlla poi il metodo della richiesta HTTP tramite $_SERVER["REQUEST_METHOD"]. Se la richiesta è di tipo POST, significa che l’utente ha inviato il form di login. In quel caso il programma recupera i dati inseriti nei campi username e password.
+
+A questo punto viene preparata una query SQL utilizzando prepare per cercare l’utente nel database. L’utilizzo di prepare e bind_param è importante per prevenire attacchi di tipo SQL injection, evitando che input malevoli possano compromettere il database. La query cerca nella tabella utenti un record con lo username corrispondente e, se trovato, recupera l’ID dell’utente e la password memorizzata.
+
+Successivamente, il codice verifica se l’utente esiste controllando il numero di righe restituite dalla query. Se l’utente non è presente, viene visualizzato un messaggio di errore specifico. Se invece l’utente esiste, il programma confronta la password inserita con quella memorizzata usando la funzione password_verify. Questo passaggio è fondamentale perché il database non conserva la password in chiaro, ma una versione crittografata: password_verify permette di verificare correttamente la corrispondenza senza esporre le password.
+
+Se la password è corretta, il programma salva i dati dell’utente nella sessione ($_SESSION["user_id"] e $_SESSION["username"]) e reindirizza l’utente alla pagina dashboard.php. Questo passaggio permette di mantenere lo stato di login tra le diverse pagine del sito. Se la password è errata, invece, viene mostrato un messaggio di errore ben visibile tramite un div rosso nella parte superiore della pagina.
+
+Dal punto di vista dell’interfaccia grafica, il form è posizionato al centro dello schermo, all’interno di un contenitore con effetto di sfocatura per migliorare la leggibilità. I campi sono obbligatori (required) e la funzione autocomplete="off" viene utilizzata per motivi di sicurezza, evitando che il browser memorizzi le credenziali inserite. I pulsanti e i collegamenti sono chiaramente visibili e permettono all’utente di tornare alla pagina principale (index.html) se desidera interrompere il login.
+
+In sintesi, login.php svolge diverse funzioni fondamentali: connessione al database, protezione contro attacchi esterni, verifica delle credenziali, gestione della sessione e presentazione di un’interfaccia chiara e sicura. Ogni passaggio è stato progettato con attenzione per garantire sia la funzionalità sia la sicurezza dell’applicazione, rendendo questa pagina uno dei componenti principali del progetto.
+
+
+
 
 
