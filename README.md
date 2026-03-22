@@ -93,3 +93,16 @@ Infine, tramite la funzione header("Location: index.html"), l’utente viene rei
 
 In conclusione, logout.php rappresenta l’ultima fase del flusso di autenticazione: dopo il login e l’accesso alla dashboard, permette di terminare la sessione in modo sicuro, impedendo accessi non autorizzati successivi.
 
+Il file registro.dtd definisce la struttura del documento XML utilizzato nel progetto. In particolare, stabilisce quali elementi devono essere presenti, in quale ordine e con quali relazioni, permettendo di verificare che il file XML sia corretto e coerente.
+
+L’elemento principale del documento è registro, che contiene uno o più elementi alunno. Questo significa che il file XML rappresenta un insieme di studenti, ognuno dei quali è descritto attraverso una struttura ben precisa.
+
+Ogni elemento alunno deve contenere obbligatoriamente i seguenti campi: id, nome, cognome, datanascita, classe e votomateria. Questa definizione garantisce che ogni studente abbia tutte le informazioni necessarie.
+
+L’elemento votomateria contiene a sua volta i voti delle diverse materie. Le materie sono definite come elementi opzionali (indicati dal simbolo ?), il che significa che possono essere presenti oppure no. Questo rende la struttura flessibile, permettendo di gestire casi in cui alcuni voti non siano ancora disponibili.
+
+Tutti gli elementi, come id, nome, cognome e i voti, sono definiti come #PCDATA, cioè contengono dati testuali. Questo è coerente con il tipo di informazioni gestite nel registro.
+
+L’utilizzo del DTD è importante perché consente di validare il file XML tramite il metodo validate() utilizzato nel codice PHP. In questo modo si garantisce che i dati rispettino la struttura prevista prima di essere letti e utilizzati dal programma, evitando errori e incoerenze.
+
+In conclusione, il file registro.dtd svolge un ruolo fondamentale nella gestione dei dati, in quanto definisce le regole che il file XML deve rispettare, contribuendo alla correttezza e all’affidabilità dell’intero sistema.
