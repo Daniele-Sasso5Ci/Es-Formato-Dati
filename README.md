@@ -63,5 +63,21 @@ Dal punto di vista grafico, la pagina mantiene uno stile coerente con le altre, 
 
 In conclusione, register.php rappresenta una delle parti più complesse del progetto, in quanto integra diverse tecnologie: lettura di file JSON, elaborazione di dati XML, validazione tramite DTD e interazione con il database. Questo approccio garantisce che solo utenti validi possano registrarsi e che i dati inseriti siano corretti, migliorando sia la sicurezza sia l’affidabilità del sistema.
 
+Il file dashboard.php rappresenta l’area riservata del sistema, accessibile solo agli utenti autenticati. Il suo scopo principale è quello di mostrare i dati personali dell’utente e il registro dei voti, recuperandoli da un file XML strutturato.
 
+All’inizio del file viene incluso config.php, necessario per la gestione della sessione e per eventuali operazioni legate al database. Subito dopo viene effettuato un controllo sulla sessione: se la variabile $_SESSION["user_id"] non è impostata, significa che l’utente non ha effettuato il login. In questo caso, il sistema reindirizza automaticamente alla pagina login.php, impedendo l’accesso non autorizzato. Questo passaggio è fondamentale per garantire la sicurezza dell’applicazione.
+
+Successivamente, il programma legge il file registro.json utilizzando file_get_contents e lo converte in una struttura dati tramite json_decode. Questo file non contiene direttamente i dati degli studenti, ma il percorso del file XML che li contiene. In questo modo si separa la configurazione dei dati dalla loro struttura effettiva, rendendo il sistema più flessibile.
+
+Il file XML viene quindi caricato tramite la classe DOMDocument. Prima del caricamento, viene verificata l’esistenza del file per evitare errori. Una volta caricato, il documento viene validato per assicurarsi che rispetti la struttura prevista (definita tramite DTD). Questo garantisce che i dati siano corretti e utilizzabili.
+
+Per accedere ai dati contenuti nel file XML viene utilizzato DOMXPath, che permette di eseguire query strutturate. Le query vengono costruite utilizzando l’ID dell’utente salvato nella sessione, in modo da recuperare esclusivamente i dati relativi all’utente autenticato. In particolare, vengono estratti nome, cognome, data di nascita e classe.
+
+Successivamente vengono recuperati anche i voti delle diverse materie. Per ogni materia viene eseguita una query specifica e il risultato viene salvato in un array associativo. Questo permette di organizzare i dati in modo chiaro e di utilizzarli facilmente nella fase di visualizzazione.
+
+Dal punto di vista dell’interfaccia grafica, la pagina mostra un messaggio di benvenuto personalizzato con il nome e cognome dell’utente, seguito dalle informazioni principali. I voti vengono visualizzati all’interno di una tabella, rendendo la lettura più ordinata. Un aspetto interessante è l’utilizzo del colore per evidenziare i voti: se il voto è maggiore o uguale a 6 viene mostrato in verde, altrimenti in rosso. Questo migliora l’usabilità e permette una comprensione immediata dei risultati.
+
+Infine, è presente un link per effettuare il logout (logout.php), che consente all’utente di terminare la sessione in modo sicuro.
+
+In conclusione, dashboard.php rappresenta la parte finale del flusso del progetto: dopo la registrazione e il login, l’utente può accedere ai propri dati personali e ai voti. Questo file integra diverse tecnologie, tra cui gestione delle sessioni, lettura di file JSON, parsing di XML e visualizzazione dinamica dei dati, dimostrando una buona integrazione tra le varie componenti del sistema.
 
