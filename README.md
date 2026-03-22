@@ -33,7 +33,15 @@ Dal punto di vista dell’interfaccia grafica, il form è posizionato al centro 
 
 In sintesi, login.php svolge diverse funzioni fondamentali: connessione al database, protezione contro attacchi esterni, verifica delle credenziali, gestione della sessione e presentazione di un’interfaccia chiara e sicura. Ogni passaggio è stato progettato con attenzione per garantire sia la funzionalità sia la sicurezza dell’applicazione, rendendo questa pagina uno dei componenti principali del progetto.
 
+Il file config.php è fondamentale per tutto il progetto, perché contiene la configurazione necessaria per connettersi al database dove sono memorizzati gli utenti e altri dati del registro elettronico.
 
+All’inizio viene avviata la sessione PHP con session_start(), in modo da poter gestire login, logout e mantenere le informazioni dell’utente durante la navigazione tra le pagine. Senza questo passaggio, non sarebbe possibile salvare in modo persistente le informazioni dell’utente dopo il login.
+
+Successivamente vengono definiti i parametri di connessione al database: host, user, pass e db. Questi valori permettono al server di sapere a quale database connettersi e con quali credenziali.
+
+La connessione effettiva viene effettuata tramite l’oggetto mysqli. Se la connessione va a buon fine, tutte le pagine che includono questo file possono eseguire query sul database senza dover riscrivere ogni volta i dettagli della connessione. Se invece la connessione fallisce, il programma termina l’esecuzione mostrando un messaggio di errore chiaro, così da sapere immediatamente cosa non funziona.
+
+In sintesi, config.php centralizza la gestione del database e della sessione, rendendo il codice più ordinato, modulare e sicuro. Tutti gli altri file PHP del progetto, come login.php o register.php, includono questo file per poter interagire con il database in modo semplice e coerente.
 
 
 
